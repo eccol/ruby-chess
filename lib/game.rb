@@ -1,11 +1,12 @@
+require 'require_all'
 require_relative 'player'
 require_relative 'board'
 require_relative 'move'
 require_relative 'piece'
-Dir['pieces/*.rb'].each { |file| require_relative file }
+require_rel 'pieces'
 
 class Game
-  attr_reader :current_player
+  attr_reader :current_player, :board
   attr_accessor :game_over
 
   def initialize
@@ -13,10 +14,12 @@ class Game
     @black_player = Player.new(:black)
     @current_player = @white_player
     @game_over = false
+    @board = Board.new
   end
 
   def play
     until game_over
+      puts board
       move = current_player.move
       if move.command?
         execute_command(move.command)
