@@ -9,19 +9,15 @@ class Player
     loop do
       puts "#{color.to_s.capitalize} Player, select a square (or enter command)."
       input = player_input
-      return Move.new({ command?: true, command: input }) unless move_format?(input)
+      return Move.new({ is_command: true, command: input }) unless move_format?(input)
 
       piece_origin = input
       puts 'Select a destination.'
       piece_destination = player_input
-      if move_format?(piece_destination)
-        move = Move.new(piece_origin, piece_destination)
-        break if move.valid?
-      end
+      return Move.new(piece_origin, piece_destination) if move_format?(piece_destination)
 
       puts 'Invalid move.'
     end
-    move
   end
 
   private
