@@ -9,7 +9,9 @@ class Move
   end
 
   def valid?(board)
-    # Determine if move can be made on this board
+    # Get the piece at current location, if none then false
+    # Ask the piece where it can move given board
+    # If destination in acceptable areas, true
   end
 
   def command?
