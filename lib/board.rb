@@ -9,6 +9,26 @@ class Board
              end
   end
 
+  def to_s
+    str = "  a b c d e f g h\n"
+    (1..8).reverse_each do |y|
+      str << y.to_s
+      str << ' '
+      (1..8).each do |x|
+        str << if get_piece([x, y]).nil?
+                 '-'
+               else
+                 get_piece([x, y]).symbol
+               end
+        str << ' '
+      end
+      str << "\n"
+    end
+    str
+  end
+
+  private
+
   def new_board
     hash = {}
     (1..8).each do |x|
@@ -31,5 +51,6 @@ class Board
     hash[[7, 8]] = Knight.new(self, :black, 7, 8)
     hash[[8, 1]] = Rook.new(self, :white, 8, 1)
     hash[[8, 8]] = Rook.new(self, :black, 8, 8)
+    hash
   end
 end
