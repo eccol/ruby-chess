@@ -17,7 +17,7 @@ class Game
       if move.command?
         execute_command(move.command)
       elsif move.valid?(board)
-        make_move
+        make_move(move)
       end
       game_over?
       change_player
@@ -26,8 +26,10 @@ class Game
 
   private
 
-  def make_move
-    # Make the actual move on the board
+  def make_move(move)
+    # Put piece in destination
+    # Clear origin
+    # Clear en passant piece if necessary
   end
 
   def game_over?
