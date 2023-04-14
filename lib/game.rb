@@ -16,7 +16,7 @@ class Game
       move = current_player.move
       if move.command?
         execute_command(move.command)
-      else
+      elsif move.valid?(board)
         make_move
       end
       game_over?

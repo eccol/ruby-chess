@@ -8,6 +8,10 @@ class Move
     @command = command
   end
 
+  def valid?(board)
+    # Determine if move can be made on this board
+  end
+
   def command?
     is_command
   end
