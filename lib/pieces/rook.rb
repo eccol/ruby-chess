@@ -1,7 +1,7 @@
 class Rook < Piece
   def to_s
-    '♖' if @color == :black
-    '♜' if @color == :white
+    return '♖' if @color == :black
+    return '♜' if @color == :white
   end
 
   def move_range

@@ -18,7 +18,7 @@ class Board
         str << if piece_at([x, y]).nil?
                  '-'
                else
-                 piece_at([x, y]).symbol
+                 piece_at([x, y]).to_s
                end
         str << ' '
       end
@@ -27,8 +27,8 @@ class Board
     str
   end
 
-  def piece_at(_location)
-    nil
+  def piece_at(location)
+    @board[location]
   end
 
   private
