@@ -1,4 +1,9 @@
 class Rook < Piece
+  def to_s
+    '♖' if @color == :black
+    '♜' if @color == :white
+  end
+
   def move_range
     destinations = []
     # All spaces up down left and right until blocked

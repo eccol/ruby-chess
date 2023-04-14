@@ -15,16 +15,20 @@ class Board
       str << y.to_s
       str << ' '
       (1..8).each do |x|
-        str << if get_piece([x, y]).nil?
+        str << if piece_at([x, y]).nil?
                  '-'
                else
-                 get_piece([x, y]).symbol
+                 piece_at([x, y]).symbol
                end
         str << ' '
       end
       str << "\n"
     end
     str
+  end
+
+  def piece_at(_location)
+    nil
   end
 
   private
