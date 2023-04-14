@@ -1,4 +1,8 @@
 require_relative 'player'
+require_relative 'board'
+require_relative 'move'
+require_relative 'piece'
+Dir['pieces/*.rb'].each { |file| require_relative file }
 
 class Game
   attr_reader :current_player
