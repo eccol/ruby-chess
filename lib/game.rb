@@ -1,3 +1,5 @@
+require_relative 'player'
+
 class Game
   attr_reader :current_player
   attr_accessor :game_over
@@ -11,7 +13,7 @@ class Game
 
   def play
     until game_over
-      move = current_player.get_move
+      move = current_player.move
       if move.command?
         execute_command(move.command)
       else
