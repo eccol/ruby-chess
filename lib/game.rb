@@ -3,10 +3,12 @@ require_relative 'player'
 require_relative 'board'
 require_relative 'move'
 require_relative 'movement'
+require_relative 'saveload'
 require_relative 'piece'
 require_rel 'pieces'
 
 class Game
+  include SaveLoad
   attr_reader :current_player, :board
   attr_accessor :game_over
 
@@ -24,6 +26,7 @@ class Game
       move = current_player.move
       if move.command?
         execute_command(move.command.downcase)
+        redo
       elsif !move.valid?(board)
         puts 'Invalid move.'
         redo
@@ -39,6 +42,10 @@ class Game
   def execute_command(cmd)
     if %w[quit exit].include?(cmd)
       exit
+    elsif cmd == 'save'
+      save_game
+    elsif cmd == 'load'
+      load_game
     else
       puts 'Unrecognized command.'
     end
