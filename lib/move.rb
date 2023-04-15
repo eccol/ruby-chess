@@ -10,6 +10,8 @@ class Move
 
   def valid?(board)
     piece = board.piece_at(origin)
+    return false if piece.nil?
+
     possible_destinations = piece.move_range
     possible_destinations.include? destination
   end
