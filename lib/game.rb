@@ -23,7 +23,7 @@ class Game
       puts board
       move = current_player.move
       if move.command?
-        execute_command(move.command)
+        execute_command(move.command.downcase)
       elsif !move.valid?(board)
         puts 'Invalid move.'
         redo
@@ -35,6 +35,14 @@ class Game
   end
 
   private
+
+  def execute_command(cmd)
+    if %w[quit exit].include?(cmd)
+      exit
+    else
+      puts 'Unrecognized command.'
+    end
+  end
 
   def make_move(move)
     piece = board.piece_at(move.origin)
