@@ -2,6 +2,7 @@ require 'require_all'
 require_relative 'player'
 require_relative 'board'
 require_relative 'move'
+require_relative 'movement'
 require_relative 'piece'
 require_rel 'pieces'
 

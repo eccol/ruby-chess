@@ -1,9 +1,9 @@
 class Move
   attr_reader :origin, :destination, :is_command, :command
 
-  def initialize(origin, destination, is_command = false, command = nil)
-    @origin = unpack(origin)
-    @destination = unpack(destination)
+  def initialize(origin = nil, destination = nil, is_command = false, command = nil)
+    @origin = unpack(origin) unless origin.nil?
+    @destination = unpack(destination) unless destination.nil?
     @is_command = is_command
     @command = command
   end

@@ -9,7 +9,7 @@ class Player
     loop do
       puts "#{color.to_s.capitalize} Player, select a square (or enter command)."
       input = player_input
-      return Move.new({ is_command: true, command: input }) unless move_format?(input)
+      return Move.new(nil, nil, true, input) unless move_format?(input)
 
       piece_origin = input
       puts 'Select a destination.'
