@@ -27,7 +27,7 @@ class Game
       if move.command?
         execute_command(move.command.downcase)
         redo
-      elsif !move.valid?(board)
+      elsif !move.valid?(board) || board.piece_at(move.origin).color != current_player.color
         puts 'Invalid move.'
         redo
       end
