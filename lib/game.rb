@@ -32,12 +32,22 @@ class Game
         redo
       end
       make_move(move)
-      # game_over?
+      ending if game_over?
       change_player
     end
   end
 
   private
+
+  def ending
+    puts board
+    if game_over == :win
+      puts "#{current_player.color.to_s.capitalize} wins by checkmate!"
+    else
+      puts 'something else happened'
+    end
+    exit
+  end
 
   def execute_command(cmd)
     if %w[quit exit].include?(cmd)
@@ -61,14 +71,18 @@ class Game
   end
 
   def game_over?
-    game_over = :win if checkmate?
-    game_over = :tie if game_tied?
-    game_over = false
+    if checkmate?
+      @game_over = :win
+      true
+    # game_over = :tie if game_tied?
+    else
+      false
+    end
   end
 
   def checkmate?
     board.kings.each do |king|
-      return true if king.move_range.empty?
+      return true if king.in_check? && king.move_range.empty?
     end
     false
   end

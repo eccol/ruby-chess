@@ -15,7 +15,11 @@ class King < Piece
         destinations.push(sq) unless check_check(sq)
       end
     end
-    destinations
+    destinations.filter { |move| (1..8).include?(move[0]) && (1..8).include?(move[1]) }
+  end
+
+  def in_check?
+    check_check([col, row])
   end
 
   private
