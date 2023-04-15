@@ -8,8 +8,8 @@ describe Pawn do
     let(:board) { Board.new({}) }
     before do
       board.board[[1, 2]] = Pawn.new(board, :white, 1, 2)
-      pawn = board.piece_at([1, 2])
     end
+    let(:pawn) { board.piece_at([1, 2]) }
     context 'when no other pieces are around' do
       it 'can move two spaces on first move' do
         expect(pawn.move_range.include?([1, 4])).to eq(true)
@@ -55,7 +55,7 @@ describe Pawn do
       end
     end
     context 'when an enemy piece moves 2 spaces to its side' do
-      it 'can capture en passant' do
+      xit 'can capture en passant' do
       end
     end
   end
