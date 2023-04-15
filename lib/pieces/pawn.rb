@@ -25,4 +25,11 @@ class Pawn < Piece
 
     destinations
   end
+
+  def capture_range
+    # Used for determining check
+    direction = 1 if @color == :white
+    direction = -1 if @color == :black
+    [[col - 1, row + direction], [col + 1, row + direction]]
+  end
 end

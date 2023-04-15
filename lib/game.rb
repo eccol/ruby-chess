@@ -61,9 +61,16 @@ class Game
   end
 
   def game_over?
-    game_over = :win if player_wins?
+    game_over = :win if checkmate?
     game_over = :tie if game_tied?
     game_over = false
+  end
+
+  def checkmate?
+    board.kings.each do |king|
+      return true if king.move_range.empty?
+    end
+    false
   end
 
   def change_player

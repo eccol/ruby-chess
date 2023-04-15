@@ -1,7 +1,8 @@
 class Board
-  attr_reader :board
+  attr_reader :board, :kings
 
   def initialize(board = nil)
+    @kings = []
     @board = if board.nil?
                new_board
              else
@@ -48,7 +49,9 @@ class Board
     hash[[4, 1]] = Queen.new(self, :white, 4, 1)
     hash[[4, 8]] = Queen.new(self, :black, 4, 8)
     hash[[5, 1]] = King.new(self, :white, 5, 1)
+    @kings.push(hash[[5, 1]])
     hash[[5, 8]] = King.new(self, :black, 5, 8)
+    @kings.push(hash[[5, 8]])
     hash[[6, 1]] = Bishop.new(self, :white, 6, 1)
     hash[[6, 8]] = Bishop.new(self, :black, 6, 8)
     hash[[7, 1]] = Knight.new(self, :white, 7, 1)
