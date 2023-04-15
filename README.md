@@ -4,7 +4,7 @@ A chess program made in Ruby for my personal edification.
 
 My process went something like:
 1. Dive in and try to code everything.
-2. Bang head against wall for a while.
+2. Bang head against wall.
 3. Take a couple days off to read all of POODR.
 4. Try again and almost use best practices for a while.
 
