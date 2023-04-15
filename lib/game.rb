@@ -23,10 +23,12 @@ class Game
       move = current_player.move
       if move.command?
         execute_command(move.command)
-      elsif move.valid?(board)
-        make_move(move)
+      elsif !move.valid?(board)
+        puts 'Invalid move.'
+        redo
       end
-      game_over?
+      make_move(move)
+      # game_over?
       change_player
     end
   end
@@ -34,8 +36,11 @@ class Game
   private
 
   def make_move(move)
-    # Put piece in destination
-    # Clear origin
+    piece = board.piece_at(move.origin)
+    piece.move_history.push(move)
+    piece.update_position
+    board.board[move.destination] = piece
+    board.board.delete(move.origin)
     # Clear en passant piece if necessary
   end
 
