@@ -62,12 +62,25 @@ class Game
   end
 
   def make_move(move)
+    handle_en_passant(move)
     piece = board.piece_at(move.origin)
     piece.move_history.push(move)
     piece.update_position
     board.board[move.destination] = piece
     board.board.delete(move.origin)
-    # Clear en passant piece if necessary
+  end
+
+  def handle_en_passant(move)
+    return unless board.piece_at(move.origin).is_a?(Pawn)
+
+    if (move.origin[0] - move.destination[0]).abs == 1 && (move.origin[1] - move.destination[1]).abs == 1
+      board.board.each { |sq, piece| board.board.delete(sq) if piece.is_a?(Pawn) && piece.en_passantable }
+    end
+
+    board.board.each { |_, piece| piece.en_passantable = false if piece.is_a?(Pawn) }
+    return unless move.origin[0] == move.destination[0] && (move.origin[1] - move.destination[1]).abs == 2
+
+    board.piece_at(move.origin).en_passantable = true
   end
 
   def game_over?

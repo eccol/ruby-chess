@@ -11,8 +11,8 @@ My process went something like:
 It's still very messy in a lot of places. It's also not complete, but the core moving-pieces-around functionality is there.
 
 Remaining issues:
-* No en passant.
-* Incorrectly IDs checkmates when moving a piece other than the king would rescue it.
+* ~~No en passant.~~ It does en passant! I'm not *that* lazy!
+* Incorrectly declares checkmates when moving a piece other than the king would rescue it.
 * Does not recognize draws.
 * I'm sure there are other bugs that can pop up.
 

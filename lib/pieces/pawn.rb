@@ -1,4 +1,11 @@
 class Pawn < Piece
+  attr_accessor :en_passantable
+
+  def initialize(board, color, col, row)
+    super
+    @en_passantable = false
+  end
+
   def to_s
     return '♙' if @color == :black
     return '♟︎' if @color == :white
@@ -20,6 +27,14 @@ class Pawn < Piece
       destinations.push(left_diagonal)
     end
     if !board.piece_at(right_diagonal).nil? && (board.piece_at(right_diagonal).color != color)
+      destinations.push(right_diagonal)
+    end
+
+    # en passant
+    if !board.piece_at([col - 1, row]).nil? && board.piece_at([col - 1, row]).en_passantable
+      destinations.push(left_diagonal)
+    end
+    if !board.piece_at([col + 1, row]).nil? && board.piece_at([col + 1, row]).en_passantable
       destinations.push(right_diagonal)
     end
 

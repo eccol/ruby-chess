@@ -55,7 +55,10 @@ describe Pawn do
       end
     end
     context 'when an enemy piece moves 2 spaces to its side' do
-      xit 'can capture en passant' do
+      it 'can move en passant' do
+        board.board[[2, 2]] = Pawn.new(board, :black, 2, 3)
+        board.piece_at([2, 2]).en_passantable = true
+        expect(pawn.move_range.include?([2, 3])).to eq(true)
       end
     end
   end
